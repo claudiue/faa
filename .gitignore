@@ -8,3 +8,9 @@ Database/Properties/
 Business/bin/
 Business/obj/
 Business/Properties/
+Common/obj/
+DataLayer/obj/
+DataLayer/bin/
+Common/bin/
+DataLayer/Properties/
+Common/Properties/
