@@ -1,4 +1,10 @@
-*./bin/.*
-*./obj/.*
-*./Properties/.*
+
 *.suo
+
+Database/obj/
+Database/bin/
+Database/Properties/
+
+Business/bin/
+Business/obj/
+Business/Properties/
