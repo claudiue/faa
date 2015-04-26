@@ -23,6 +23,7 @@ namespace Common.Models
         public double BaccalaureatAverageGrade { get; set; }
         public double BaccalaureatMaximumGrade { get; set; }
         public double FinalGrade { get; set; }
-        public StudentStatus Status { get; set; }
+        public string Status { get; set; }
+        //public StudentStatus Status { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Business.Managers
     {
         void computeResult(Admission admission);
         List<Student> clasifyAll();
-        List<Student> clasifyByStatus(StudentStatus status);
-        void publish(AdmissionPublishFormat type);
+       // List<Student> clasifyByStatus(StudentStatus status);
+       // void publish(AdmissionPublishFormat type);
     }
 }

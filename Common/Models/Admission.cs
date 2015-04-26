@@ -19,6 +19,6 @@ namespace Common.Models
         public double FeeRejectedThreshold { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ClosedAt { get; set; }
-        public AdmissionStatus Status { get; set; }
+      //  public AdmissionStatus Status { get; set; }
     }
 }
