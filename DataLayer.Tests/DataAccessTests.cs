@@ -14,7 +14,7 @@ namespace DataLayer.Tests
         [Test]
         public void Should_Select_Records()
         {
-            var sut = new Factory().CreateDataAccess();
+            var sut = new DataFactory().CreateDataAccess();
             var results = sut.Select(db: "DB1", 
                 columns: new List<string> { "id", "name" }, 
                 table: "students", 
@@ -30,7 +30,7 @@ namespace DataLayer.Tests
             var table = new Table("TableOne", column1, column2);
             var database = new Database("TestDB", table);
 
-            var sut = new Factory().CreateDataAccess();
+            var sut = new DataFactory().CreateDataAccess();
             sut.CreateDatabase(database);
         }
 

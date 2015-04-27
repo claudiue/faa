@@ -13,6 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacultyAdmissionApp", "Facu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer.Tests", "DataLayer.Tests\DataLayer.Tests.csproj", "{9E8E7C16-190F-4F7E-9534-E4303F479E80}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4B82056-23D3-4E0E-8A08-ABE099ACF5C7}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{E4DFD106-EFA8-4AEF-B60C-9098EF0A7DAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +48,10 @@ Global
 		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DFD106-EFA8-4AEF-B60C-9098EF0A7DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DFD106-EFA8-4AEF-B60C-9098EF0A7DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DFD106-EFA8-4AEF-B60C-9098EF0A7DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DFD106-EFA8-4AEF-B60C-9098EF0A7DAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

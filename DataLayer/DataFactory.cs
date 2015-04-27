@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class Factory
+    public class DataFactory
     {
         public IDataAccess CreateDataAccess()
         {
