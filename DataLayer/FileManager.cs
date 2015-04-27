@@ -44,7 +44,6 @@ namespace DataLayer
             }
         }
 
-
         public void WriteList(string path, string fileName, IList<Record> list)
         {
             fileName = String.Format("{0}/{1}/{2}.csv", Config.Path, path, fileName);
@@ -60,17 +59,29 @@ namespace DataLayer
 
         public IList<string> ReadFile(string path, string fileName)
         {
-            return new List<string>
+            var list = new List<string>();
+            string line;
+
+            fileName = String.Format("{0}/{1}/{2}.csv", Config.Path, path, fileName);
+            StreamReader sr = new StreamReader(fileName);
+
+            while ((line = sr.ReadLine()) != null)
             {
-                "id:System.Int32,name:System.String,age:System.Int32",
-                "1,Claudiu,24",
-                "2,Andreea,23",
-                "3,Vasile,43",
-                "4,Ionut,35",
-                "5,Andreea,38",
-                "6,Claudiu,8",
-                "7,Mihai,24"
-            };
+                list.Add(line);
+            }
+            return list;
+
+            //return new List<string>
+            //{
+            //    "id:System.Int32,name:System.String,age:System.Int32",
+            //    "1,Claudiu,24",
+            //    "2,Andreea,23",
+            //    "3,Vasile,43",
+            //    "4,Ionut,35",
+            //    "5,Andreea,38",
+            //    "6,Claudiu,8",
+            //    "7,Mihai,24"
+            //};
         }
 
 
