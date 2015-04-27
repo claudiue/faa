@@ -127,7 +127,7 @@ namespace Business.Managers
             }
 
             DateTime year = new DateTime();
-            string filePath = "D:\\_FII\\1.2\\_CSS\\faa" + "\\FAA" + year.Year + ".cvs";
+            string filePath = "D:\\_FII\\1.2\\_CSS\\faa" + "\\FAA" + year.Year + ".csv";
 
             if (!File.Exists(filePath))
             {
