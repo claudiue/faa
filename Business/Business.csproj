@@ -71,6 +71,10 @@
       <Project>{fcb6d2c7-fa05-458b-bd40-527af0da4bea}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataLayer.Tests\DataLayer.Tests.csproj">
+      <Project>{9e8e7c16-190f-4f7e-9534-e4303f479e80}</Project>
+      <Name>DataLayer.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
       <Project>{77207327-e0d5-4bd1-8b4d-061a11cae9f9}</Project>
       <Name>DataLayer</Name>
