@@ -15,3 +15,7 @@ DataLayer/bin/
 
 FacultyAdmissionApp/bin/
 FacultyAdmissionApp/obj/
+DataLayer.Tests/obj/
+DataLayer.Tests/bin/
+packages/
+Files/TestFolder/

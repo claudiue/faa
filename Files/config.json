@@ -1,0 +1,10 @@
+{
+	databases: [
+		{
+			name: "DB1",
+			tables: [
+				{}
+			]
+		}
+	]
+}

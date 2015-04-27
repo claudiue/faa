@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,7 @@ namespace Common
     {
         void CreateFolder(string path);
         void CreateFile(string path, string fileName);
+        void WriteLine(string path, string fileName, string line);
+        void WriteList(string path, string fileName, IList<Record> list);
     }
 }

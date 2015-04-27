@@ -11,6 +11,18 @@ namespace Common.Models
         public string Name { get; private set; }
         public IList<Column> Columns { get; private set; }
         public IList<Record> Records { get; private set; }
+        public string ColumnsDefinition 
+        { 
+            get 
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (Column c in Columns)
+                {
+                    sb.AppendFormat("{0},", c);
+                }
+                return sb.ToString().TrimEnd(new char[]{','});
+            }
+        }
 
         public Table(string name, params Column[] columns)
         {
