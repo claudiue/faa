@@ -1,0 +1,11 @@
+id:System.Int32,first_name:System.String,last_name:System.String,father_initial:System.String,pin:System.String,city:System.String,address:System.String,highschool:System.String,specialization:System.String,admission_exam_grade:System.Double,baccalaureat_average_grade:System.Double,baccalaureat_maximum_grade:System.Double
+1,Andreea,Tiron,V,2910101010101,Vaslui,Visani,Mihail Kogalniceanu,mathematics,9.00,8.00,8.00
+2,Claudiu,Epure,C,1901414141414,Galati,Copou,Colegiul National,informatics,8.00,9.00,10.00
+3,Simona,Serseniuc,S,2921212121212,Iasi,Carol,Emil Racovita,geography,7.00,8.50,10.00
+4,Emanuel,Berea,T,1913434343434,Buzau,Stihii,Stefan Procopiu,history,10.00,9.00,9.00
+5,Sebastian,Tomescu,I,1885656565656,Bacau,Strugurilor,Vasile Alecsandri,mathematics,9.00,9.00,9.00
+6,Andreea,Haras,G,2859898989898,Suceava,Tacuta,Mihai Eminescu,informatics,9.00,10.00,10.00
+7,Laura,Grosu,M,2919797979797,Ploiesti,Parcului,Miron Costin,mathematics,10.00,10.00,10.00
+8,Andreea,Curca,O,2915858585858,Bucuresti,Fragilor,Mihail Sadoveanu,informatics,8.00,8.00,8.00
+9,Iuliana,Minea,P,2919292929292,Pitesti,Arcu,Grigore Moisil,mathematics,7.50,7.50,8.00
+
