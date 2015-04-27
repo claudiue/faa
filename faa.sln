@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{8902949E-D50F-4A29-8748-257E1384145D}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{77207327-E0D5-4BD1-8B4D-061A11CAE9F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacultyAdmissionApp", "FacultyAdmissionApp\FacultyAdmissionApp.csproj", "{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer.Tests", "DataLayer.Tests\DataLayer.Tests.csproj", "{9E8E7C16-190F-4F7E-9534-E4303F479E80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
