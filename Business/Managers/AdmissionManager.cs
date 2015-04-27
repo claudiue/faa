@@ -156,7 +156,20 @@ namespace Business.Managers
                 for (int j = 0; j < students.Count; j++)
                 {
                     Student s = students.ElementAt(j);
-                    writer.WriteLine(string.Join(delimiter, s.FirstName, s.FinalGrade, s.AdmissionExamGrade, s.BaccalaureatAverageGrade, s.BaccalaureatMaximumGrade));
+                    writer.WriteLine(string.Join(delimiter, 
+                        s.Id, 
+                        s.FirstName, 
+                        s.LastName, 
+                        s.FatherInitial,
+                        s.PIN,
+                        s.City,
+                        s.Address,
+                        s.Highschool,
+                        s.Specialization,
+                        s.AdmissionExamGrade, 
+                        s.BaccalaureatAverageGrade, 
+                        s.BaccalaureatMaximumGrade,
+                        s.FinalGrade));
                 }
             }
         }
@@ -173,7 +186,7 @@ namespace Business.Managers
             renderer.RenderDocument();
 
             string fileName = "FIIAdmission.pdf";
-            renderer.PdfDocument.Save(fileName);
+            renderer.PdfDocument.Save(string.Format(fileName));
         }
     }
 }

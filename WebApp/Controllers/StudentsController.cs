@@ -1,5 +1,6 @@
 ﻿using Business;
 using Business.Managers;
+using Common;
 using Common.Models;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,28 @@ namespace WebApp.Controllers
             var students = _studentManager.GetAll();
             var addmissionModel = new Admission();
             var computed = _admissionManager.ComputeResult(addmissionModel, students);
-            var sorted = _admissionManager.ClassifyCandidates(computed, 3, 3);
-            return View(sorted);
+            var _sorted = _admissionManager.ClassifyCandidates(computed, 3, 3);
+            return View(_sorted);
+        }
+
+        public ActionResult GeneratePDF()
+        {
+            var students = _studentManager.GetAll();
+            var addmissionModel = new Admission();
+            var computed = _admissionManager.ComputeResult(addmissionModel, students);
+            var _sorted = _admissionManager.ClassifyCandidates(computed, 3, 3);
+            _admissionManager.ExportToPDF(_sorted);
+            return View("Results", _sorted);
+        }
+
+        public ActionResult GenerateCSV()
+        {
+            var students = _studentManager.GetAll();
+            var addmissionModel = new Admission();
+            var computed = _admissionManager.ComputeResult(addmissionModel, students);
+            var _sorted = _admissionManager.ClassifyCandidates(computed, 3, 3);
+            _admissionManager.ExportToCSV(_sorted);
+            return View("Results", _sorted);
         }
     }
 }
