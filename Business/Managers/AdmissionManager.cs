@@ -139,7 +139,7 @@ namespace Business.Managers
             return this.Students; //TODO
         }
 
-        public void ExportToPDF(IList<Student> students)
+        public void ExportToCSV(IList<Student> students)
         {
             DateTime year = new DateTime();
             string filePath = Config.Path + "\\FAA" + year.Year + ".csv";
@@ -159,8 +159,10 @@ namespace Business.Managers
                     writer.WriteLine(string.Join(delimiter, s.FirstName, s.FinalGrade, s.AdmissionExamGrade, s.BaccalaureatAverageGrade, s.BaccalaureatMaximumGrade));
                 }
             }
+        }
 
-
+        public void ExportToPDF(IList<Student> students)
+        {
             Common.GeneratePDFResults pdfGenerator = new Common.GeneratePDFResults();
             Document doc = pdfGenerator.GenerateResults(students);
 
