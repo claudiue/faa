@@ -13,9 +13,9 @@ namespace Business.Managers
 {
     public class StudentManager : IStudentManager
     {
-        private DataAccess dataAccess;
+        private IDataAccess dataAccess;
 
-        public StudentManager(DataAccess dataAccess)
+        internal StudentManager(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;
         }
@@ -100,7 +100,6 @@ namespace Business.Managers
             student.AdmissionExamGrade = (double)record.Fields["admission_exam_grade"];
             student.BaccalaureatAverageGrade = (double)record.Fields["baccalaureat_average_grade"];
             student.BaccalaureatMaximumGrade = (double)record.Fields["baccalaureat_maximum_grade"];
-            student.FinalGrade = (double)record.Fields["final_grade"];
 
             return student;
         }
@@ -121,7 +120,6 @@ namespace Business.Managers
             record.Fields.Add("admission_exam_grade", student.AdmissionExamGrade);
             record.Fields.Add("baccalaureat_average_grade", student.BaccalaureatAverageGrade);
             record.Fields.Add("baccalaureat_maximum_grade", student.BaccalaureatMaximumGrade);
-            record.Fields.Add("final_grade", student.FinalGrade);
 
             return record;
         }

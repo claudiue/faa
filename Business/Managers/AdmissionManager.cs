@@ -26,8 +26,7 @@ namespace Business.Managers
                 Specialization = "Informatica",
                 AdmissionExamGrade = 9.70,
                 BaccalaureatAverageGrade = 9.25,
-                BaccalaureatMaximumGrade = 9.80,
-                FinalGrade= 9.28
+                BaccalaureatMaximumGrade = 9.80
             },
             new Student {
                 Id=2,
@@ -41,8 +40,7 @@ namespace Business.Managers
                 Specialization = "Informatica",
                 AdmissionExamGrade = 9.20,
                 BaccalaureatAverageGrade = 9.50,
-                BaccalaureatMaximumGrade = 9.5,
-                FinalGrade = 0.5* 9.20 + 0.25*9.50+0.25*9.50
+                BaccalaureatMaximumGrade = 9.5
             },
             new Student {
                 Id=3,
@@ -56,8 +54,7 @@ namespace Business.Managers
                 Specialization = "Informatica",
                 AdmissionExamGrade = 9.30,
                 BaccalaureatAverageGrade = 9.10,
-                BaccalaureatMaximumGrade = 9.2,
-                FinalGrade = 0.5* 9.30 + 0.25*9.10 + 0.25*9.20
+                BaccalaureatMaximumGrade = 9.2
             },
             new Student {
                 Id=4,
@@ -71,8 +68,7 @@ namespace Business.Managers
                 Specialization = "Informatica",
                 AdmissionExamGrade = 9.25,
                 BaccalaureatAverageGrade = 9.10,
-                BaccalaureatMaximumGrade = 9.2,
-                FinalGrade = 0.5* 9.30 + 0.25*9.10 + 0.25*9.20
+                BaccalaureatMaximumGrade = 9.2
             },
             new Student {
                 Id=3,
@@ -86,10 +82,14 @@ namespace Business.Managers
                 Specialization = "Informatica",
                 AdmissionExamGrade = 9.25,
                 BaccalaureatAverageGrade = 9.30,
-                BaccalaureatMaximumGrade = 9.2,
-                FinalGrade = 0.5* 9.30 + 0.25*9.10 + 0.25*9.20
+                BaccalaureatMaximumGrade = 9.2
             }
         };
+
+        internal AdmissionManager ()
+        {
+
+        }
 
         public void computeResult(Admission admission)
         {
