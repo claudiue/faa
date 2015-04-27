@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using MigraDoc.DocumentObjectModel;
+using PdfSharp;
 using Common.Models;
 
 namespace Business.Managers
@@ -36,6 +38,7 @@ namespace Business.Managers
                 City = "Vaslui",
                 Address = "Alexandru",
                 Highschool = "Liceul Teoretic",
+                Specialization = "Informatica",
                 AdmissionExamGrade = 9.20,
                 BaccalaureatAverageGrade = 9.50,
                 BaccalaureatMaximumGrade = 9.5,
@@ -50,6 +53,7 @@ namespace Business.Managers
                 City = "Piatra Neamt",
                 Address = "1 Mai",
                 Highschool = "Colegiul National de Informatica",
+                Specialization = "Informatica",
                 AdmissionExamGrade = 9.30,
                 BaccalaureatAverageGrade = 9.10,
                 BaccalaureatMaximumGrade = 9.2,
@@ -64,6 +68,7 @@ namespace Business.Managers
                 City = "Piatra Neamt",
                 Address = "1 Mai",
                 Highschool = "Colegiul National de Informatica",
+                Specialization = "Informatica",
                 AdmissionExamGrade = 9.25,
                 BaccalaureatAverageGrade = 9.10,
                 BaccalaureatMaximumGrade = 9.2,
@@ -78,6 +83,7 @@ namespace Business.Managers
                 City = "Piatra Neamt",
                 Address = "1 Mai",
                 Highschool = "Colegiul National de Informatica",
+                Specialization = "Informatica",
                 AdmissionExamGrade = 9.25,
                 BaccalaureatAverageGrade = 9.30,
                 BaccalaureatMaximumGrade = 9.2,
@@ -138,6 +144,20 @@ namespace Business.Managers
                     writer.WriteLine(string.Join(delimiter, s.FirstName, s.FinalGrade, s.AdmissionExamGrade, s.BaccalaureatAverageGrade, s.BaccalaureatMaximumGrade));
                 }
             }
+
+            Common.GeneratePDFResults pdfGenerator = new Common.GeneratePDFResults();
+            Document doc = pdfGenerator.GenerateResults(this.Students);
+
+            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(doc, "MigraDoc.mdddl");
+            MigraDoc.Rendering.PdfDocumentRenderer renderer = new MigraDoc.Rendering.PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+            renderer.Document = doc;
+
+            renderer.RenderDocument();
+
+            string fileName = "FIIAdmission.pdf";
+            renderer.PdfDocument.Save(fileName);
+
+            
         }
 
         public List<Student> clasifyAll()
