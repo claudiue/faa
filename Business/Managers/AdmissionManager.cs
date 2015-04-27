@@ -160,6 +160,7 @@ namespace Business.Managers
                 }
             }
 
+
             Common.GeneratePDFResults pdfGenerator = new Common.GeneratePDFResults();
             Document doc = pdfGenerator.GenerateResults(students);
 
