@@ -13,6 +13,9 @@ namespace Business.Managers
 {
     public class AdmissionManager : IAdmissionManager
     {
+        private IStudentManager _studentManager;
+
+        #region test_data
         private List<Student> Students = new List<Student>() {
             new Student{
                 Id = 1,
@@ -85,47 +88,58 @@ namespace Business.Managers
                 BaccalaureatMaximumGrade = 9.2
             }
         };
+        #endregion test_data
 
-        internal AdmissionManager ()
+        internal AdmissionManager (IStudentManager studentManager)
         {
-
+            _studentManager = studentManager;
         }
 
-        public void computeResult(Admission admission)
+        public IList<Student> ComputeResult(Admission admission, IList<Student> students)
         {
             //TODO - change this.Students with students from param
-            this.Students = this.Students.OrderBy(s => s.FinalGrade)
+            students = students.OrderBy(s => s.FinalGrade)
                                .ThenBy(s => s.AdmissionExamGrade)
                                .ThenBy(s => s.BaccalaureatAverageGrade)
                                .ThenBy(s => s.BaccalaureatMaximumGrade)
                                .Reverse()
                                .ToList();
-
+            return students;
             //foreach (Student s in this.Students)
             //{
             //    Console.WriteLine(s.FirstName + " " + s.FinalGrade + " " + s.AdmissionExamGrade + " " + s.BaccalaureatAverageGrade + " " + s.BaccalaureatMaximumGrade);
             //}
         }
 
-        public void classifyCandidates(List<Student> students, int budget, int tax)
+        public IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax)
         {
             int b = 2, t = 2 ;
             //TODO - change test data with param data
 
-            for (int i = 0; i < this.Students.Count; i++)
+            for (int i = 0; i < students.Count; i++)
             {
                 if (i < b)
                 {
-                    this.Students.ElementAt(i).Status = "BudgetFinanced";
+                    students.ElementAt(i).Status = "BudgetFinanced";
                 } else if (i>=b && i<b+t){
-                    this.Students.ElementAt(i).Status = "FeePayer";
+                    students.ElementAt(i).Status = "FeePayer";
                 }
                 else
                 {
-                    this.Students.ElementAt(i).Status = "Rejected";
+                    students.ElementAt(i).Status = "Rejected";
                 }
             }
 
+            return students;
+        }
+
+        public IList<Student> ClasifyAll()
+        {
+            return this.Students; //TODO
+        }
+
+        public void ExportToPDF(IList<Student> students)
+        {
             DateTime year = new DateTime();
             string filePath = "D:\\_FII\\1.2\\_CSS\\faa" + "\\FAA" + year.Year + ".csv";
 
@@ -138,15 +152,15 @@ namespace Business.Managers
 
             using (System.IO.TextWriter writer = File.CreateText(filePath))
             {
-                for (int j = 0; j < this.Students.Count; j++)
+                for (int j = 0; j < students.Count; j++)
                 {
-                    Student s = this.Students.ElementAt(j);
+                    Student s = students.ElementAt(j);
                     writer.WriteLine(string.Join(delimiter, s.FirstName, s.FinalGrade, s.AdmissionExamGrade, s.BaccalaureatAverageGrade, s.BaccalaureatMaximumGrade));
                 }
             }
 
             Common.GeneratePDFResults pdfGenerator = new Common.GeneratePDFResults();
-            Document doc = pdfGenerator.GenerateResults(this.Students);
+            Document doc = pdfGenerator.GenerateResults(students);
 
             MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(doc, "MigraDoc.mdddl");
             MigraDoc.Rendering.PdfDocumentRenderer renderer = new MigraDoc.Rendering.PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
@@ -156,15 +170,6 @@ namespace Business.Managers
 
             string fileName = "FIIAdmission.pdf";
             renderer.PdfDocument.Save(fileName);
-
-            
         }
-
-        public List<Student> clasifyAll()
-        {
-            return this.Students; //TODO
-        }
-
-
     }
 }

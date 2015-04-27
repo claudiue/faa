@@ -17,7 +17,7 @@ namespace Business
 
         public static IAdmissionManager CreateAdmissionManager()
         {
-            return new AdmissionManager();
+            return new AdmissionManager(new StudentManager(new DataFactory().CreateDataAccess()));
         }
     }
 }

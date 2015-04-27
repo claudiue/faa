@@ -9,8 +9,9 @@ namespace Business.Managers
 {
     public interface IAdmissionManager
     {
-        void computeResult(Admission admission);
-        List<Student> clasifyAll();
+        IList<Student> ComputeResult(Admission admission, IList<Student> students);
+        IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax);
+        IList<Student> ClasifyAll();
        // List<Student> clasifyByStatus(StudentStatus status);
        // void publish(AdmissionPublishFormat type);
     }

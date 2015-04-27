@@ -21,7 +21,7 @@ namespace Common
 
         //}
 
-        public Document GenerateResults(List<Student> students)
+        public Document GenerateResults(IList<Student> students)
         {
             this.document = new MigraDoc.DocumentObjectModel.Document();
             this.document.Info.Title = "Faculty Admission Results";
@@ -53,7 +53,7 @@ namespace Common
             style.ParagraphFormat.TabStops.AddTabStop("16cm", TabAlignment.Right);
         }
 
-        protected void CreatePage(List<Student> students)
+        protected void CreatePage(IList<Student> students)
         {
             Section section = this.document.AddSection();
 
