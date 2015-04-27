@@ -22,7 +22,15 @@ namespace Common.Models
         public double AdmissionExamGrade { get; set; }
         public double BaccalaureatAverageGrade { get; set; }
         public double BaccalaureatMaximumGrade { get; set; }
-        public double FinalGrade { get; set; }
+        public double FinalGrade 
+        { 
+            get 
+            { 
+                return AdmissionExamGrade * 0.5 
+                    + BaccalaureatAverageGrade * 0.25
+                    + BaccalaureatMaximumGrade * 0.25; 
+            } 
+        }
         public string Status { get; set; }
         //public StudentStatus Status { get; set; }
     }
