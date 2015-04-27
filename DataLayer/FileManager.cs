@@ -11,7 +11,7 @@ namespace DataLayer
 {
     public class FileManager : IFileManager
     {
-        public FileManager() { }
+        internal FileManager() { }
 
         public void CreateFolder(string path)
         {
@@ -47,6 +47,11 @@ namespace DataLayer
         public void WriteList(string path, string fileName, IList<Record> list)
         {
             
+        }
+
+        public IList<string> ReadFile(string path, string fileName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

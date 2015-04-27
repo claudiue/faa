@@ -23,7 +23,7 @@ namespace DataLayer.Tests
         [TestCase("TestFolder")]
         public void Should_Create_Directory(string name) 
         {
-            IFileManager sut = new FileManager();
+            IFileManager sut = new Factory().CreateFileManager();
             sut.CreateFolder(name);
         }
 
@@ -33,7 +33,7 @@ namespace DataLayer.Tests
         [TestCase("TestFolder", "FileThree")]
         public void Should_Create_File(string path, string fileName)
         {
-            IFileManager sut = new FileManager();
+            IFileManager sut = new Factory().CreateFileManager();
             sut.CreateFile(path, fileName);
         }
 
@@ -41,7 +41,7 @@ namespace DataLayer.Tests
         [TestCase("TestFolder", "FileThree")]
         public void Should_Write_Line(string path, string fileName)
         {
-            IFileManager sut = new FileManager();
+            IFileManager sut = new Factory().CreateFileManager();
             sut.WriteLine(path, fileName, "line");
         }
 

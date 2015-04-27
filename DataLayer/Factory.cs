@@ -13,5 +13,10 @@ namespace DataLayer
         {
             return new DataAccess(new FileManager());
         }
+
+        public IFileManager CreateFileManager() 
+        {
+            return new FileManager();
+        }
     }
 }
