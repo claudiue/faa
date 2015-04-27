@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class Table : ITable
+    public class Table
     {
         public string Name { get; private set; }
-        public IList<IColumn> Columns { get; private set; }
-        public IList<IRecord> Records { get; private set; }
+        public IList<Column> Columns { get; private set; }
+        public IList<Record> Records { get; private set; }
 
-        public Table(string name, params IColumn[] columns)
+        public Table(string name, params Column[] columns)
         {
             Name = name;
             Columns = columns;

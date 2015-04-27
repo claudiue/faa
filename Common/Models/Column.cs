@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class Column : IColumn
+    public class Column
     {
         public string Name { get; private set; }
         public Type Type { get; private set; }
