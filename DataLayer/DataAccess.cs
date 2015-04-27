@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,12 +37,59 @@ namespace DataLayer
 
         public void Insert(string db, string table, IList<Record> records)
         {
-            throw new NotImplementedException();
+            _fileManager.WriteList(db, table, records);
         }
 
-        public void Update(string db, string table, IDictionary<string, object> set, IDictionary<string, object> where)
+        public IList<Record> Update(string db, string table, IDictionary<string, object> set, IDictionary<string, object> where)
         {
-            throw new NotImplementedException();
+            //TODO save all records in a list
+            var lines = _fileManager.ReadFile(db, table);
+            var firstLine = lines.FirstOrDefault();
+            var keys = firstLine.Split(',');
+            var whereCols = new List<Column>();
+            var setCols = new List<Column>();
+            var records = new List<Record>();
+
+            for (var i = 0; i < keys.Length; i++)
+            {
+                var name = keys[i].Split(':')[0];
+                if (where.Keys.Contains(name))
+                {
+                    whereCols.Add(new Column
+                    (
+                        name: name,
+                        type: Type.GetType(keys[i].Split(':')[1]),
+                        index: i
+                    ));
+                }
+
+                if (set.Keys.Contains(name))
+                {
+                    setCols.Add(new Column
+                    (
+                        name: name,
+                        type: Type.GetType(keys[i].Split(':')[1]),
+                        index: i
+                    ));
+                }
+            }
+
+            foreach (var line in lines.Skip(1))
+            {
+                var record = new Record();
+                var values = line.Split(',');
+                foreach (var column in whereCols)
+                {
+                    if (values[column.Index] == where.Values.First()) 
+                    {
+                        foreach (var col in setCols)
+                        {
+                            record.Fields[col.Name] = values[col.Index];
+                        }
+                    }
+                }
+            }
+            return records;
         }
 
         public void Delete(string db, string table, IDictionary<string, object> where)

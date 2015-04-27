@@ -8,6 +8,7 @@ using System.IO;
 using MigraDoc.DocumentObjectModel;
 using PdfSharp;
 using Common.Models;
+using Common;
 
 namespace Business.Managers
 {
@@ -141,7 +142,7 @@ namespace Business.Managers
         public void ExportToPDF(IList<Student> students)
         {
             DateTime year = new DateTime();
-            string filePath = "D:\\_FII\\1.2\\_CSS\\faa" + "\\FAA" + year.Year + ".csv";
+            string filePath = Config.Path + "\\FAA" + year.Year + ".csv";
 
             if (!File.Exists(filePath))
             {
