@@ -3,16 +3,15 @@
 
 Database/obj/
 Database/bin/
-Database/Properties/
 
 Business/bin/
 Business/obj/
-Business/Properties/
+
 Common/obj/
+Common/bin/
+
 DataLayer/obj/
 DataLayer/bin/
-Common/bin/
-DataLayer/Properties/
-Common/Properties/
+
 FacultyAdmissionApp/bin/
 FacultyAdmissionApp/obj/
