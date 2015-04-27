@@ -44,9 +44,7 @@
     <Compile Include="IFileManager.cs" />
     <Compile Include="Models\Admission.cs" />
     <Compile Include="Models\Column.cs" />
-    <Compile Include="Models\IAdmission.cs" />
     <Compile Include="Models\Database.cs" />
-    <Compile Include="Models\IStudent.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Table.cs" />

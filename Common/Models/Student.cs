@@ -8,7 +8,7 @@ namespace Common.Models
 {
     enum StudentStatus { BudgetFinanced, FeePayer, Rejected };
 
-    public class Student : IStudent
+    public class Student
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
