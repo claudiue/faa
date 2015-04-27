@@ -10,11 +10,13 @@ namespace Common.Models
     {
         public string Name { get; private set; }
         public Type Type { get; private set; }
+        public int Index { get; set; }
 
-        public Column(string name, Type type)
+        public Column(string name, Type type, int index)
         {
             Name = name;
             Type = type;
+            Index = index;
         }
 
         public override string ToString()

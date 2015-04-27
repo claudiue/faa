@@ -51,7 +51,17 @@ namespace DataLayer
 
         public IList<string> ReadFile(string path, string fileName)
         {
-            throw new NotImplementedException();
+            return new List<string>
+            {
+                "id:System.Int32,name:System.String,age:System.Int32",
+                "1,Claudiu,24",
+                "2,Andreea,23",
+                "3,Vasile,43",
+                "4,Ionut,35",
+                "5,Andreea,38",
+                "6,Claudiu,8",
+                "7,Mihai,24"
+            };
         }
     }
 }

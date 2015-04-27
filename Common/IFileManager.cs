@@ -13,5 +13,6 @@ namespace Common
         void CreateFile(string path, string fileName);
         void WriteLine(string path, string fileName, string line);
         void WriteList(string path, string fileName, IList<Record> list);
+        IList<string> ReadFile(string path, string fileName);
     }
 }

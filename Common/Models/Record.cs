@@ -9,5 +9,10 @@ namespace Common.Models
     public class Record
     {
         public IDictionary<string, object> Fields { get; set; }
+
+        public Record()
+        {
+            Fields = new Dictionary<string, object>();
+        }
     }
 }
