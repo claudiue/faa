@@ -9,5 +9,16 @@ namespace DataLayer
 {
     public class FileManager : IFileManager
     {
+        internal FileManager() { }
+
+        public void CreateFolder(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateFile(string path, string fileName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

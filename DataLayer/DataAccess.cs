@@ -10,18 +10,24 @@ namespace DataLayer
 {
     public class DataAccess : IDataAccess
     {
+        private IFileManager _fileManager;
 
-        public void CreateDatabase(IDatabase database)
+        internal DataAccess(IFileManager fileManager)
+        {
+            _fileManager = fileManager;
+        }
+
+        public void CreateDatabase(Database database)
+        {
+            _fileManager.CreateFolder(database.Name);
+        }
+
+        public void DropDatabase(Database database)
         {
             throw new NotImplementedException();
         }
 
-        public void DropDatabase(IDatabase database)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(string table, IList<IRecord> records)
+        public void Insert(string table, IList<Record> records)
         {
             throw new NotImplementedException();
         }
@@ -33,10 +39,14 @@ namespace DataLayer
 
         public void Delete(string table, IDictionary<string, object> where)
         {
+            Select(
+                columns: new List<string> { "id", "name", "age" },
+                table: "students",
+                where: new Dictionary<string, object> { { "name", "Alex" }, { "age", 20 } });
             throw new NotImplementedException();
         }
 
-        public IList<IRecord> Select(IList<string> columns, string table, IDictionary<string, object> where)
+        public IList<Record> Select(IList<string> columns, string table, IDictionary<string, object> where)
         {
             throw new NotImplementedException();
         }

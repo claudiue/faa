@@ -8,5 +8,7 @@ namespace Common
 {
     public interface IFileManager
     {
+        void CreateFolder(string path);
+        void CreateFile(string path, string fileName);
     }
 }
