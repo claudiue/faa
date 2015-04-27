@@ -45,6 +45,14 @@ namespace DataLayer.Tests
             sut.WriteLine(path, fileName, "line");
         }
 
+        [Test]
+        [TestCase("TestFolder")]
+        public void Should_Delete_Folder(string path)
+        {
+            IFileManager sut = new Factory().CreateFileManager();
+            sut.DeleteFolder(path);
+        }
+
         [TearDown]
         public void TearDown() { }
     }

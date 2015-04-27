@@ -27,7 +27,8 @@ namespace DataLayer
             fileName = String.Format("{0}/{1}/{2}.csv", Config.Path, path, fileName);
             if (!File.Exists(fileName)) 
             {
-                File.Create(fileName);
+                var fs = File.Create(fileName);
+                fs.Close();
             }
         }
 
@@ -46,7 +47,15 @@ namespace DataLayer
 
         public void WriteList(string path, string fileName, IList<Record> list)
         {
-            
+            fileName = String.Format("{0}/{1}/{2}.csv", Config.Path, path, fileName);
+
+            var fs = new FileStream(fileName, FileMode.Append, FileAccess.Write);
+            var sw = new StreamWriter(fs);
+            foreach (Record r in list)
+            {
+                sw.WriteLine(r.Values);
+            }
+            sw.Close();
         }
 
         public IList<string> ReadFile(string path, string fileName)
@@ -62,6 +71,13 @@ namespace DataLayer
                 "6,Claudiu,8",
                 "7,Mihai,24"
             };
+        }
+
+
+        public void DeleteFolder(string path)
+        {
+            path = String.Format("{0}/{1}", Config.Path, path);
+            Directory.Delete(path, true);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Common.Models;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,19 @@ namespace DataLayer.Tests
                 table: "students", 
                 where: new Dictionary<string, object> { { "id", 2 } });
         }
+
+        [Test]
+        public void Should_Create_Database()
+        {
+            var column1 = new Column("Id", typeof(int), 0);
+            var column2 = new Column("Name", typeof(string), 1);
+
+            var table = new Table("TableOne", column1, column2);
+            var database = new Database("TestDB", table);
+
+            var sut = new Factory().CreateDataAccess();
+            sut.CreateDatabase(database);
+        }
+
     }
 }

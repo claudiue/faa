@@ -25,31 +25,13 @@ namespace DataLayer
             for (var i = 0; i < database.Tables.Count; i++) 
             {
                 var table = database.Tables[i];
-                var columns = database.Tables[i].Columns;
-
-                _fileManager.CreateFile(database.Name, table.Name);
                 _fileManager.WriteLine(database.Name, table.Name, table.ColumnsDefinition.ToString());
-
-                _fileManager.WriteList(database.Name, table.Name, table.Records);
-
-                //IList<Record> records = new List<Record>();
-                //foreach (Record r in database.Tables[i].Records)
-                //{
-                //    var name = database.Tables[i].Records;
-
-                //    var type = database.Tables[i].Columns[i].Type;
-                //    records.Add(new Record());
-                //    IDictionary<string, object> fields = new Dictionary<string, object>(database.Tables[i].Records[i].Fields);
-                //    fields.Keys;
-                //}
-                
-                
             }
         }
 
         public void DropDatabase(Database database)
         {
-            throw new NotImplementedException();
+            _fileManager.DeleteFolder(database.Name);
         }
 
         public void Insert(string db, string table, IList<Record> records)

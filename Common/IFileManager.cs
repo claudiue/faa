@@ -10,6 +10,7 @@ namespace Common
     public interface IFileManager
     {
         void CreateFolder(string path);
+		void DeleteFolder(string path);
         void CreateFile(string path, string fileName);
         void WriteLine(string path, string fileName, string line);
         void WriteList(string path, string fileName, IList<Record> list);
