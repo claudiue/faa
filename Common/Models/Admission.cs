@@ -9,7 +9,7 @@ namespace Common.Models
     enum AdmissionPublishFormat { CSV, PDF };
     enum AdmissionStatus { Open, Processing, Closed };
 
-    public class Admission : IAdmission
+    public class Admission
     {
         public int Id { get; set; }
         public DateTime SessionDate { get; set; }
