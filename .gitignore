@@ -19,3 +19,6 @@ DataLayer.Tests/obj/
 DataLayer.Tests/bin/
 packages/
 Files/TestFolder/
+WebApp/bin/
+WebApp/WebApp.csproj.user
+WebApp/obj/Debug/
