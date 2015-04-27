@@ -57,7 +57,7 @@ namespace DataLayer
         public IList<Record> Select(string db, IList<string> columns, string table, IDictionary<string, object> where)
         {
             var records = new List<Record>();
-            var lines = _fileManager.ReadFile(db, string.Format("{0}.csv", table));
+            var lines = _fileManager.ReadFile(db, table);
             var firstLine = lines.FirstOrDefault();
 
             var keys = firstLine.Split(',');
@@ -66,7 +66,7 @@ namespace DataLayer
             for(var i = 0; i < keys.Length; i++)
             {
                 var name = keys[i].Split(':')[0];
-                if (!columns.Contains(name))
+                if (!columns.Contains("*") && !columns.Contains(name))
                     continue;
 
                 cols.Add(new Column

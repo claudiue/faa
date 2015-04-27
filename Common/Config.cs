@@ -8,6 +8,7 @@ namespace Common
 {
     public static class Config
     {
-        public const string Path = "../../../Files";
+        //public const string Path = "../../../Files";
+        public const string Path = "C:\\Files";
     }
 }

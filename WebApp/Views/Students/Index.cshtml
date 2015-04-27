@@ -4,102 +4,28 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Students</h2>
+<div>
+    @{
+        var grid = new WebGrid(Model, defaultSort: "Id");
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FatherInitial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Highschool)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Specialization)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdmissionExamGrade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BaccalaureatAverageGrade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BaccalaureatMaximumGrade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FinalGrade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FatherInitial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Highschool)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Specialization)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdmissionExamGrade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BaccalaureatAverageGrade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BaccalaureatMaximumGrade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinalGrade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    @grid.GetHtml(
+        columns: grid.Columns(
+            grid.Column("Id", "Id"),
+            grid.Column("FirstName", header: "First Name"),
+            grid.Column("LastName", header: "Last Name"),
+            grid.Column("FatherInitial", header: "Father's Initial"),
+            grid.Column("PIN", header: "PIN"),
+            grid.Column("City", header: "City"),
+            grid.Column("Address", header: "Address"),
+            grid.Column("Highschool", header: "High School"),
+            grid.Column("Specialization", header: "Specialization"),
+            grid.Column("AdmissionExamGrade", header: "Exam"),
+            grid.Column("BaccalaureatAverageGrade", header: "Bacc Avg"),
+            grid.Column("BaccalaureatMaximumGrade", header: "Bacc Max"),
+            grid.Column("FinalGrade", header: "Final"),
+            grid.Column("Status", header: "Status")
+        )
+    )
+</div>
