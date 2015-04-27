@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Common.Models.Student>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Results";
 }
 
 @Html.ActionLink("Students", "Index", null, null) |
 @Html.ActionLink("Results", "Results", null, null)
 
-<h2>Students</h2>
+<h2>Results</h2>
 <div>
     @{
-        var grid = new WebGrid(Model, defaultSort: "Id");
+        var grid = new WebGrid(Model, canSort: false);
     }
 
     @grid.GetHtml(

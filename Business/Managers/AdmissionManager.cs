@@ -113,16 +113,16 @@ namespace Business.Managers
 
         public IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax)
         {
-            int b = 2, t = 2 ;
+            int b = budget, t = tax ;
             //TODO - change test data with param data
 
             for (int i = 0; i < students.Count; i++)
             {
                 if (i < b)
                 {
-                    students.ElementAt(i).Status = "BudgetFinanced";
+                    students.ElementAt(i).Status = "Budget";
                 } else if (i>=b && i<b+t){
-                    students.ElementAt(i).Status = "FeePayer";
+                    students.ElementAt(i).Status = "Fee";
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 ﻿using Business;
 using Business.Managers;
+using Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,15 @@ namespace WebApp.Controllers
         {
             var students = _studentManager.GetAll();
             return View(students);
+        }
+
+        public ActionResult Results()
+        {
+            var students = _studentManager.GetAll();
+            var addmissionModel = new Admission();
+            var computed = _admissionManager.ComputeResult(addmissionModel, students);
+            var sorted = _admissionManager.ClassifyCandidates(computed, 3, 3);
+            return View(sorted);
         }
     }
 }
