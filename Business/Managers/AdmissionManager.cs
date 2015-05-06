@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using System.Diagnostics;
 using MigraDoc.DocumentObjectModel;
 using PdfSharp;
 using Common.Models;
 using Common;
+using DataLayer;
 
 namespace Business.Managers
 {
@@ -91,6 +93,11 @@ namespace Business.Managers
         };
         #endregion test_data
 
+        public AdmissionManager()
+        {
+            
+        }
+
         internal AdmissionManager (IStudentManager studentManager)
         {
             _studentManager = studentManager;
@@ -105,11 +112,8 @@ namespace Business.Managers
                                .ThenBy(s => s.BaccalaureatMaximumGrade)
                                .Reverse()
                                .ToList();
+           
             return students;
-            //foreach (Student s in this.Students)
-            //{
-            //    Console.WriteLine(s.FirstName + " " + s.FinalGrade + " " + s.AdmissionExamGrade + " " + s.BaccalaureatAverageGrade + " " + s.BaccalaureatMaximumGrade);
-            //}
         }
 
         public IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax)
@@ -134,13 +138,10 @@ namespace Business.Managers
             return students;
         }
 
-        public IList<Student> ClasifyAll()
-        {
-            return this.Students; //TODO
-        }
 
         public void ExportToCSV(IList<Student> students)
         {
+            //string year = DateTime.Now.Year.ToString();
             DateTime year = new DateTime();
             string filePath = Config.Path + "\\FAA" + year.Year + ".csv";
 
@@ -172,6 +173,8 @@ namespace Business.Managers
                         s.FinalGrade));
                 }
             }
+
+            Process.Start(filePath);
         }
 
         public void ExportToPDF(IList<Student> students)
@@ -187,6 +190,28 @@ namespace Business.Managers
 
             string fileName = "FIIAdmission.pdf";
             renderer.PdfDocument.Save(string.Format(fileName));
+            Process.Start(fileName);
+        }
+
+        public void GenerateNewAddmission()
+        {
+            var column1 = new Column("id", typeof(int), 0);
+            var column2 = new Column("first_name", typeof(string),1);
+            var column3 = new Column("last_name", typeof(string),2);
+            var column4 = new Column("father_initial", typeof(string),3);            
+            var column5 = new Column("pin", typeof(string),4);            
+            var column6 = new Column("city", typeof(string),5);            
+            var column7 = new Column("address", typeof(string),6); 
+            var column8 = new Column("highschool", typeof(string),7);
+            var column9 = new Column("specialization", typeof(string),8);
+            var column10 = new Column("admission_exam_grade", typeof(double),9);
+            var column11 = new Column("baccalaureat_average_grade", typeof(double),10);
+            var column12 = new Column("baccalaureat_maximum_grade", typeof(double),11);
+
+            Table student = new Table("Student", column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11, column12);
+
+            Database db = new Database("students2015", student);
+
         }
     }
 }

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Common.Models;
 
 namespace Business.Managers
 {
@@ -15,7 +14,7 @@ namespace Business.Managers
     {
         private IDataAccess dataAccess;
 
-        internal StudentManager(IDataAccess dataAccess)
+        public StudentManager(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;
         }
@@ -25,7 +24,7 @@ namespace Business.Managers
             // TODO: delete this when not needed
             //return new List<Student>();
 
-            List<Record> records = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students", new Dictionary<string, object> { });
+            List<Record> records = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students1", new Dictionary<string, object> { });
 
             List<Student> studentList = new List<Student>();
             foreach (Record record in records)
@@ -41,7 +40,7 @@ namespace Business.Managers
         {
             // TODO: delete this when not needed
             //return new Student();
-            List<Record> students = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students", new Dictionary<string, object> { { "id", id } });
+            List<Record> students = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students1", new Dictionary<string, object> { { "id", id } });
 
             if (students.Count != 1)
             {
@@ -59,7 +58,7 @@ namespace Business.Managers
             List<Record> records = new List<Record>();
             records.Add(this.GetRecordFromStudent(student));
 
-            this.dataAccess.Insert("FAA-2015", "students", records);
+            this.dataAccess.Insert("FAA-2015", "students1", records);
         }
 
         public void AddList(List<Student> students)
@@ -70,18 +69,18 @@ namespace Business.Managers
                 records.Add(this.GetRecordFromStudent(student));
             }
 
-            this.dataAccess.Insert("FAA-2015", "students", records);
+            this.dataAccess.Insert("FAA-2015", "students1", records);
         }
 
         public void Edit(int id, Student student)
         {
             Record record = this.GetRecordFromStudent(student);
-            this.dataAccess.Update("FAA-2015", "students", record.Fields, new Dictionary<string, object> { { "id", id } });
+            this.dataAccess.Update("FAA-2015", "students1", record.Fields, new Dictionary<string, object> { { "id", id } });
         }
 
         public void Delete(int id)
         {
-            this.dataAccess.Delete("FAA-2015", "students", new Dictionary<string, object> { { "id", id } });
+            this.dataAccess.Delete("FAA-2015", "students1", new Dictionary<string, object> { { "id", id } });
         }
 
         private Student GetStudentFromRecord(Record record)

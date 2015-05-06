@@ -11,10 +11,10 @@ namespace FacultyAdmissionApp
         public void Configuration(IAppBuilder app) {
             ConfigureAuth(app);
 
-            AdmissionManager am = new AdmissionManager();
+            //AdmissionManager am = new AdmissionManager();
 
-            am.computeResult(new Admission());
-            am.classifyCandidates(new List<Student>(), 2, 2);
+            //am.computeResult(new Admission());
+            //am.classifyCandidates(new List<Student>(), 2, 2);
         }
     }
 }
