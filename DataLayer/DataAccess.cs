@@ -137,7 +137,20 @@ namespace DataLayer
                 records.Add(record);
             }
 
-            return records;
+            var filteredRecords = new List<Record>();
+            foreach (var record in records)
+            {
+                var allCriteriaMatched = true;
+                foreach(var whereKey in where.Keys)
+                {
+                    if (record.Fields.ContainsKey(whereKey) && !record.Fields[whereKey].Equals(where[whereKey]))
+                        allCriteriaMatched = false;
+                }
+                if (allCriteriaMatched)
+                    filteredRecords.Add(record);
+            }
+
+            return filteredRecords;
         }
     }
 }
