@@ -22,3 +22,5 @@ Files/TestFolder/
 WebApp/bin/
 WebApp/WebApp.csproj.user
 WebApp/obj/Debug/
+Business.Test/obj/
+Business.Test/bin/
