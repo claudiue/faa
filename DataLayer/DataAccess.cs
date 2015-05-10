@@ -137,6 +137,9 @@ namespace DataLayer
                 records.Add(record);
             }
 
+            if (where == null)
+                return records;
+
             var filteredRecords = new List<Record>();
             foreach (var record in records)
             {
