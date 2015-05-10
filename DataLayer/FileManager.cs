@@ -40,7 +40,7 @@ namespace DataLayer
             using (StreamWriter sw = new StreamWriter(fs))
             {
                 sw.WriteLine(line);
-                sw.Close();
+                //sw.Close();
             }
         }
 
