@@ -44,7 +44,7 @@ namespace Business.Managers
 
             if (students.Count != 1)
             {
-                throw new Exception("Multiple results returned...");
+                throw new NonUniqueResultException("Multiple results returned...");
             }
 
             Record record = students.First();
@@ -121,6 +121,16 @@ namespace Business.Managers
             record.Fields.Add("baccalaureat_maximum_grade", student.BaccalaureatMaximumGrade);
 
             return record;
+        }
+    }
+
+    public class NonUniqueResultException : ApplicationException
+    {
+        public string Description { get; set; }
+
+        public NonUniqueResultException(string message)
+        {
+            this.Description = message;
         }
     }
 }
