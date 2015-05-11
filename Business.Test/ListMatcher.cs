@@ -52,6 +52,12 @@ namespace Business.Test
 
         public override bool Matches(object o)
         {
+            if (!(o is IDictionary)) return false;
+            IDictionary otherDictionary = (IDictionary)o;
+
+            if (dictionary.Count != otherDictionary.Count)
+                return false;
+
             return true;
         }
 

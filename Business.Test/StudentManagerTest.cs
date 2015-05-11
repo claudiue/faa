@@ -140,50 +140,5 @@ namespace Business.Test
 
             this.mocks.VerifyAllExpectationsHaveBeenMet();
         }
-
-        [Test]
-        [Ignore("TODO: review how to implement")]
-        public void Should_Add_Student()
-        {
-            Student student = new Student() {
-                Id = 4,
-                FirstName = "Firstname4",
-                LastName = "Lastname4",
-                FatherInitial = "D",
-                PIN = "10000000004",
-                City = "City4",
-                Address = "Address4",
-                Highschool = "Highschool4",
-                Specialization = "Spec4",
-                AdmissionExamGrade = 7.75D,
-                BaccalaureatAverageGrade = 8.50D,
-                BaccalaureatMaximumGrade = 8.25D
-            };
-            //List<Record> records = new List<Record>();
-            //records.Add(studentManager.GetRecordFromStudent(student));
-
-            // TODO: review how to implement
-        }
-
-        [Test]
-        [Ignore("TODO: review how to implement")]
-        public void Should_Add_Student_List()
-        {
-            // TODO: review how to implement
-        }
-
-        [Test]
-        [Ignore("TODO: review how to implement")]
-        public void Should_Edit_Student()
-        {
-            // TODO: review how to implement
-        }
-
-        [Test]
-        [Ignore("TODO: review how to implement")]
-        public void Should_Delete_Student()
-        {
-            // TODO: review how to implement
-        }
     }
 }
