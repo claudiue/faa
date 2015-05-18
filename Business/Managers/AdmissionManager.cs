@@ -11,6 +11,7 @@ using PdfSharp;
 using Common.Models;
 using Common;
 using DataLayer;
+using System.Diagnostics;
 
 namespace Business.Managers
 {
@@ -118,6 +119,9 @@ namespace Business.Managers
 
         public IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax)
         {
+            Trace.Assert(budget > 0);
+            Trace.Assert(tax > 0);
+
             int b = budget, t = tax ;
             //TODO - change test data with param data
 
