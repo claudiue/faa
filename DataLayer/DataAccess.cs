@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 
 namespace DataLayer
 {
@@ -24,6 +25,9 @@ namespace DataLayer
 
         public void CreateDatabase(Database database)
         {
+            Contract.Requires(!String.IsNullOrEmpty(database.Name));
+            Contract.Requires(database.Tables.Count > 0);
+
             Trace.Assert(database.Name.Trim() != "");
             Trace.Assert(database.Tables.Count > 0);
 
@@ -58,6 +62,8 @@ namespace DataLayer
 
         public IList<Record> Update(string db, string table, IDictionary<string, object> set, IDictionary<string, object> where)
         {
+            Contract.Ensures(Contract.Result<IList<Record>>().Count >= 0);
+
             //TODO save all records in a list
             var lines = _fileManager.ReadFile(db, table);
             var firstLine = lines.FirstOrDefault();
@@ -105,6 +111,7 @@ namespace DataLayer
                     }
                 }
             }
+           
             return records;
         }
 
@@ -120,10 +127,15 @@ namespace DataLayer
 
         public IList<Record> Select(string db, IList<string> columns, string table, IDictionary<string, object> where)
         {
+            Contract.Requires(!String.IsNullOrEmpty(db));
+            Contract.Requires(columns.Count > 0);
+            Contract.Requires(!String.IsNullOrEmpty(table));
+            Contract.Ensures(Contract.Result<IList<Record>>().Count > 0);
+
             Trace.Assert(db != "");
             Trace.Assert(columns.Count > 0);
             Trace.Assert(table != "");
-            //Trace.Assert(where.Count > 0); 
+            Trace.Assert(where.Count > 0); 
 
             var records = new List<Record>();
             var lines = _fileManager.ReadFile(db, table);
@@ -160,7 +172,7 @@ namespace DataLayer
                 records.Add(record);
             }
 
-            Trace.Assert(records.Count > 0);
+            //Trace.Assert(records.Count > 0);
             if (where == null)
                 return records;
 
@@ -174,12 +186,12 @@ namespace DataLayer
                         allCriteriaMatched = false;
                 }
 
-                Trace.Assert(allCriteriaMatched);
+                //Trace.Assert(allCriteriaMatched);
                 if (allCriteriaMatched)
                     filteredRecords.Add(record);
             }
 
-            Trace.Assert(filteredRecords.Count > 0);
+            //Trace.Assert(filteredRecords.Count > 0);
             return filteredRecords;
         }
     }

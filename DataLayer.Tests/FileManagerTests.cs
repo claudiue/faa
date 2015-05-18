@@ -31,7 +31,7 @@ namespace DataLayer.Tests
         }
 
         [Test]
-        [TestCase("TestFolder")]
+        [TestCase("")]
         public void Should_Create_Folder(string name)
         {
             _sut.CreateFolder(name);
@@ -101,7 +101,7 @@ namespace DataLayer.Tests
         }
 
         [Test]
-        [TestCase("TestFolder", "FileThree")]
+        [TestCase("TestFolder", "")]
         public void Should_Write_List(string path, string fileName) 
         {
             IList<Record> records = new List<Record>();

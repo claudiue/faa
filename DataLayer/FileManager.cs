@@ -2,6 +2,7 @@
 using Common.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace DataLayer
 
         public void CreateFolder(string path)
         {
+            Contract.Requires(!String.IsNullOrEmpty(path));
+            
             path = String.Format("{0}/{1}", Config.Path, path);
             if (!Directory.Exists(path)) 
             {
@@ -24,6 +27,9 @@ namespace DataLayer
 
         public void CreateFile(string path, string fileName)
         {
+            Contract.Requires(!String.IsNullOrEmpty(path));
+            Contract.Requires(!String.IsNullOrEmpty(fileName));
+
             fileName = String.Format("{0}/{1}/{2}.csv", Config.Path, path, fileName);
             if (!File.Exists(fileName)) 
             {
@@ -46,6 +52,10 @@ namespace DataLayer
 
         public void WriteList(string path, string fileName, IList<Record> list)
         {
+            Contract.Requires(!String.IsNullOrEmpty(path));
+            Contract.Requires(!String.IsNullOrEmpty(fileName));
+            Contract.Requires(list.Count > 0);
+
             fileName = String.Format("{0}/{1}/{2}.csv", Config.Path, path, fileName);
 
             var fs = new FileStream(fileName, FileMode.Append, FileAccess.Write);
@@ -54,11 +64,14 @@ namespace DataLayer
             {
                 sw.WriteLine(r.Values);
             }
+            
             sw.Close();
         }
 
         public IList<string> ReadFile(string path, string fileName)
         {
+            Contract.Ensures(Contract.Result<IList<string>>().Count > 0);
+
             var list = new List<string>();
             string line;
 
@@ -69,6 +82,7 @@ namespace DataLayer
             {
                 list.Add(line);
             }
+
             return list;
 
             //return new List<string>
