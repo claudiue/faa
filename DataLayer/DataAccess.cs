@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Diagnostics;
+
 namespace DataLayer
 {
     public class DataAccess : IDataAccess
@@ -22,11 +24,21 @@ namespace DataLayer
 
         public void CreateDatabase(Database database)
         {
+            Trace.Assert(database.Name.Trim() != "");
+            Trace.Assert(database.Tables.Count > 0);
+
             _fileManager.CreateFolder(database.Name);
+
             for (var i = 0; i < database.Tables.Count; i++) 
             {
                 var table = database.Tables[i];
+
+                Trace.Assert(table.Name != "");
+                Trace.Assert(table.ColumnsDefinition.ToString() != "");
+
                 _fileManager.WriteLine(database.Name, table.Name, table.ColumnsDefinition.ToString());
+
+                Trace.Assert(database.Tables.Count - i > 0);
             }
         }
 
@@ -37,6 +49,10 @@ namespace DataLayer
 
         public void Insert(string db, string table, IList<Record> records)
         {
+            Trace.Assert(db != "");
+            Trace.Assert(table != "");
+            Trace.Assert(records.Count > 0);
+
             _fileManager.WriteList(db, table, records);
         }
 
@@ -104,6 +120,11 @@ namespace DataLayer
 
         public IList<Record> Select(string db, IList<string> columns, string table, IDictionary<string, object> where)
         {
+            Trace.Assert(db != "");
+            Trace.Assert(columns.Count > 0);
+            Trace.Assert(table != "");
+            //Trace.Assert(where.Count > 0); 
+
             var records = new List<Record>();
             var lines = _fileManager.ReadFile(db, table);
             var firstLine = lines.FirstOrDefault();
@@ -113,6 +134,8 @@ namespace DataLayer
 
             for(var i = 0; i < keys.Length; i++)
             {
+                Trace.Assert(keys[i] != null);
+
                 var name = keys[i].Split(':')[0];
                 if (!columns.Contains("*") && !columns.Contains(name))
                     continue;
@@ -137,6 +160,7 @@ namespace DataLayer
                 records.Add(record);
             }
 
+            Trace.Assert(records.Count > 0);
             if (where == null)
                 return records;
 
@@ -145,14 +169,17 @@ namespace DataLayer
             {
                 var allCriteriaMatched = true;
                 foreach(var whereKey in where.Keys)
-                {
+                {                    
                     if (record.Fields.ContainsKey(whereKey) && !record.Fields[whereKey].Equals(where[whereKey]))
                         allCriteriaMatched = false;
                 }
+
+                Trace.Assert(allCriteriaMatched);
                 if (allCriteriaMatched)
                     filteredRecords.Add(record);
             }
 
+            Trace.Assert(filteredRecords.Count > 0);
             return filteredRecords;
         }
     }
