@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{77207327-E0D5-4BD1-8B4D-061A11CAE9F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacultyAdmissionApp", "FacultyAdmissionApp\FacultyAdmissionApp.csproj", "{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer.Tests", "DataLayer.Tests\DataLayer.Tests.csproj", "{9E8E7C16-190F-4F7E-9534-E4303F479E80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4B82056-23D3-4E0E-8A08-ABE099ACF5C7}"
@@ -42,10 +40,6 @@ Global
 		{77207327-E0D5-4BD1-8B4D-061A11CAE9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77207327-E0D5-4BD1-8B4D-061A11CAE9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77207327-E0D5-4BD1-8B4D-061A11CAE9F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65C77B08-5A7F-44FF-B3DF-4B4816A5B5BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E8E7C16-190F-4F7E-9534-E4303F479E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
