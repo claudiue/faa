@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using MigraDoc.DocumentObjectModel;
 using PdfSharp;
 using Common.Models;
@@ -106,34 +107,38 @@ namespace Business.Managers
 
         public IList<Student> ComputeResult(Admission admission, IList<Student> students)
         {
-            //TODO - change this.Students with students from param
+            Trace.Assert(students.Count > 0);
             students = students.OrderBy(s => s.FinalGrade)
                                .ThenBy(s => s.AdmissionExamGrade)
                                .ThenBy(s => s.BaccalaureatAverageGrade)
                                .ThenBy(s => s.BaccalaureatMaximumGrade)
                                .Reverse()
                                .ToList();
-           
+
+            Trace.Assert(students.Count > 0);
             return students;
         }
 
         public IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax)
         {
-            Trace.Assert(budget > 0);
-            Trace.Assert(tax > 0);
 
-            int b = budget, t = tax ;
-            //TODO - change test data with param data
+            Contract.Requires<ArgumentNullException>(students != null);
+            Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");
+            Contract.Requires<ArgumentException>(budget > 0, "There should be budget students");
+            Contract.Requires<ArgumentException>(tax > 0, "There should be fee students");
+            Contract.Ensures(students.Count > 0, "Cannot return an empty list after classify");
+            int b = budget, t = tax ;       
 
             for (int i = 0; i < students.Count; i++)
             {
                 if (i < b)
                 {
                     students.ElementAt(i).Status = "Budget";
-                } else if (i>=b && i<b+t){
+                } else if ( i<b+t)
+                {
                     students.ElementAt(i).Status = "Fee";
                 }
-                else
+                else if(i>=b+t)
                 {
                     students.ElementAt(i).Status = "Rejected";
                 }
@@ -145,7 +150,8 @@ namespace Business.Managers
 
         public void ExportToCSV(IList<Student> students)
         {
-            //string year = DateTime.Now.Year.ToString();
+            Contract.Requires(students.Count > 0);
+
             DateTime year = new DateTime();
             string filePath = Config.Path + "\\FAA" + year.Year + ".csv";
 
