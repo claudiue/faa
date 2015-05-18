@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 
 namespace Business.Managers
@@ -42,6 +43,7 @@ namespace Business.Managers
             //return new Student();
             List<Record> students = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students1", new Dictionary<string, object> { { "id", id } });
 
+            Trace.Assert(students.Count == 1);
             if (students.Count != 1)
             {
                 throw new NonUniqueResultException("Multiple results returned...");
@@ -64,10 +66,13 @@ namespace Business.Managers
         public void AddList(List<Student> students)
         {
             List<Record> records = new List<Record>();
-            foreach (Student student in students)
+            
+            for (int i = 0; i < students.Count; i++)
             {
-                records.Add(this.GetRecordFromStudent(student));
+                records.Add(this.GetRecordFromStudent(students[i]));
+                Trace.Assert(students.Count - i > 0);
             }
+            Trace.Assert(records.Count == students.Count);
 
             this.dataAccess.Insert("FAA-2015", "students1", records);
         }
