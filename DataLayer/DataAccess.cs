@@ -20,29 +20,19 @@ namespace DataLayer
 
         internal DataAccess(IFileManager fileManager)
         {
+            Contract.Requires(fileManager != null);
+            Contract.Ensures(_fileManager != null);
             _fileManager = fileManager;
         }
 
         public void CreateDatabase(Database database)
         {
-            Contract.Requires(!String.IsNullOrEmpty(database.Name));
-            Contract.Requires(database.Tables.Count > 0);
-
-            Trace.Assert(database.Name.Trim() != "");
-            Trace.Assert(database.Tables.Count > 0);
-
             _fileManager.CreateFolder(database.Name);
 
-            for (var i = 0; i < database.Tables.Count; i++) 
+            for (var i = 0; i < database.Tables.Count; i++)
             {
                 var table = database.Tables[i];
-
-                Trace.Assert(table.Name != "");
-                Trace.Assert(table.ColumnsDefinition.ToString() != "");
-
                 _fileManager.WriteLine(database.Name, table.Name, table.ColumnsDefinition.ToString());
-
-                Trace.Assert(database.Tables.Count - i > 0);
             }
         }
 
@@ -53,17 +43,11 @@ namespace DataLayer
 
         public void Insert(string db, string table, IList<Record> records)
         {
-            Trace.Assert(db != "");
-            Trace.Assert(table != "");
-            Trace.Assert(records.Count > 0);
-
             _fileManager.WriteList(db, table, records);
         }
 
         public IList<Record> Update(string db, string table, IDictionary<string, object> set, IDictionary<string, object> where)
         {
-            Contract.Ensures(Contract.Result<IList<Record>>().Count >= 0);
-
             //TODO save all records in a list
             var lines = _fileManager.ReadFile(db, table);
             var firstLine = lines.FirstOrDefault();
@@ -102,7 +86,7 @@ namespace DataLayer
                 var values = line.Split(',');
                 foreach (var column in whereCols)
                 {
-                    if (values[column.Index] == where.Values.First()) 
+                    if (values[column.Index] == where.Values.First())
                     {
                         foreach (var col in setCols)
                         {
@@ -127,16 +111,6 @@ namespace DataLayer
 
         public IList<Record> Select(string db, IList<string> columns, string table, IDictionary<string, object> where)
         {
-            Contract.Requires(!String.IsNullOrEmpty(db));
-            Contract.Requires(columns.Count > 0);
-            Contract.Requires(!String.IsNullOrEmpty(table));
-            Contract.Ensures(Contract.Result<IList<Record>>().Count > 0);
-
-            Trace.Assert(db != "");
-            Trace.Assert(columns.Count > 0);
-            Trace.Assert(table != "");
-            Trace.Assert(where.Count > 0); 
-
             var records = new List<Record>();
             var lines = _fileManager.ReadFile(db, table);
             var firstLine = lines.FirstOrDefault();
@@ -144,27 +118,25 @@ namespace DataLayer
             var keys = firstLine.Split(',');
             var cols = new List<Column>();
 
-            for(var i = 0; i < keys.Length; i++)
+            for (var i = 0; i < keys.Length; i++)
             {
-                Trace.Assert(keys[i] != null);
-
                 var name = keys[i].Split(':')[0];
                 if (!columns.Contains("*") && !columns.Contains(name))
                     continue;
 
                 cols.Add(new Column
                     (
-                        name: name, 
+                        name: name,
                         type: Type.GetType(keys[i].Split(':')[1]),
                         index: i
                     ));
             }
 
-            foreach (var line in lines.Skip(1)) 
+            foreach (var line in lines.Skip(1))
             {
                 var record = new Record();
                 var values = line.Split(',');
-                foreach(var column in cols)
+                foreach (var column in cols)
                 {
                     var converter = TypeDescriptor.GetConverter(column.Type);
                     record.Fields[column.Name] = converter.ConvertFromString(values[column.Index]);
@@ -172,7 +144,6 @@ namespace DataLayer
                 records.Add(record);
             }
 
-            //Trace.Assert(records.Count > 0);
             if (where == null)
                 return records;
 
@@ -180,19 +151,24 @@ namespace DataLayer
             foreach (var record in records)
             {
                 var allCriteriaMatched = true;
-                foreach(var whereKey in where.Keys)
-                {                    
+                foreach (var whereKey in where.Keys)
+                {
                     if (record.Fields.ContainsKey(whereKey) && !record.Fields[whereKey].Equals(where[whereKey]))
                         allCriteriaMatched = false;
                 }
 
-                //Trace.Assert(allCriteriaMatched);
                 if (allCriteriaMatched)
                     filteredRecords.Add(record);
             }
 
-            //Trace.Assert(filteredRecords.Count > 0);
             return filteredRecords;
         }
+
+        [ContractInvariantMethod]
+        void ObjectInvariant() 
+        {
+            Contract.Invariant (_fileManager != null);
+        }
+
     }
 }

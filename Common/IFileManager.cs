@@ -1,12 +1,15 @@
-﻿using Common.Models;
+﻿using Common.Contracts;
+using Common.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Common
 {
+    [ContractClass(typeof(IFileManagerContract))]
     public interface IFileManager
     {
         void CreateFolder(string path);

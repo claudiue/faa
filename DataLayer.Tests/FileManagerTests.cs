@@ -32,6 +32,7 @@ namespace DataLayer.Tests
 
         [Test]
         [TestCase("")]
+        [TestCase(null)]
         public void Should_Create_Folder(string name)
         {
             _sut.CreateFolder(name);

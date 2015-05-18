@@ -1,12 +1,15 @@
-﻿using Common.Models;
+﻿using Common.Contracts;
+using Common.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Common
 {
+    [ContractClass(typeof(IDataAccessContract))]
     public interface IDataAccess
     {
         void CreateDatabase(Database database);
