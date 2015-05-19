@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 
 
 namespace Business.Managers
@@ -22,9 +23,6 @@ namespace Business.Managers
 
         public List<Student> GetAll()
         {
-            // TODO: delete this when not needed
-            //return new List<Student>();
-
             List<Record> records = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students1", new Dictionary<string, object> { });
 
             List<Student> studentList = new List<Student>();
@@ -39,8 +37,8 @@ namespace Business.Managers
 
         public Student GetOneById(int id)
         {
-            // TODO: delete this when not needed
-            //return new Student();
+            Contract.Requires<ArgumentException>(id > 0, "The student id should be positive");
+
             List<Record> students = (List<Record>)this.dataAccess.Select("FAA-2015", new List<string> { "*" }, "students1", new Dictionary<string, object> { { "id", id } });
 
             Trace.Assert(students.Count == 1);
@@ -57,6 +55,8 @@ namespace Business.Managers
 
         public void Add(Student student)
         {
+            Contract.Requires<ArgumentNullException>(student != null);
+
             List<Record> records = new List<Record>();
             records.Add(this.GetRecordFromStudent(student));
 
@@ -65,6 +65,9 @@ namespace Business.Managers
 
         public void AddList(List<Student> students)
         {
+            Contract.Requires<ArgumentNullException>(students != null);
+            Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");
+
             List<Record> records = new List<Record>();
             
             for (int i = 0; i < students.Count; i++)
@@ -79,12 +82,17 @@ namespace Business.Managers
 
         public void Edit(int id, Student student)
         {
+            Contract.Requires<ArgumentException>(id > 0, "The student id should be positive");
+            Contract.Requires<ArgumentNullException>(student != null);
+
             Record record = this.GetRecordFromStudent(student);
             this.dataAccess.Update("FAA-2015", "students1", record.Fields, new Dictionary<string, object> { { "id", id } });
         }
 
         public void Delete(int id)
         {
+            Contract.Requires<ArgumentException>(id > 0, "The student id should be positive");
+
             this.dataAccess.Delete("FAA-2015", "students1", new Dictionary<string, object> { { "id", id } });
         }
 
