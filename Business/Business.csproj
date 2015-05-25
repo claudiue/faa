@@ -101,6 +101,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IAdmissionContract.cs" />
+    <Compile Include="Contracts\IAdmissionManagerContract.cs" />
     <Compile Include="Controllers\AdmissionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="BusinessFactory.cs" />
