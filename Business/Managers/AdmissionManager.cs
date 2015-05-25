@@ -107,6 +107,9 @@ namespace Business.Managers
 
         public IList<Student> ComputeResult(Admission admission, IList<Student> students)
         {
+            //Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");
+            //Contract.Ensures(students.Count > 0);
+
             Trace.Assert(students.Count > 0);
             students = students.OrderBy(s => s.FinalGrade)
                                .ThenBy(s => s.AdmissionExamGrade)
@@ -121,12 +124,13 @@ namespace Business.Managers
 
         public IList<Student> ClassifyCandidates(IList<Student> students, int budget, int tax)
         {
+            //Contract.Requires<ArgumentNullException>(students != null);
+            //Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");
+            //Contract.Requires<ArgumentException>(budget > 0, "There should be budget students");
+            //Contract.Requires<ArgumentException>(tax > 0, "There should be fee students");
+            //Contract.Ensures(students.Count > 0, "Cannot return an empty list after classify");
 
-            Contract.Requires<ArgumentNullException>(students != null);
-            Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");
-            Contract.Requires<ArgumentException>(budget > 0, "There should be budget students");
-            Contract.Requires<ArgumentException>(tax > 0, "There should be fee students");
-            Contract.Ensures(students.Count > 0, "Cannot return an empty list after classify");
+            
             int b = budget, t = tax ;       
 
             for (int i = 0; i < students.Count; i++)
@@ -150,7 +154,7 @@ namespace Business.Managers
 
         public void ExportToCSV(IList<Student> students)
         {
-            Contract.Requires(students.Count > 0);
+            //Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");  
 
             DateTime year = new DateTime();
             string filePath = Config.Path + "\\FAA" + year.Year + ".csv";
@@ -189,6 +193,8 @@ namespace Business.Managers
 
         public void ExportToPDF(IList<Student> students)
         {
+            //Contract.Requires<ArgumentException>(students.Count > 0, "The list should not be empty");  
+
             Common.GeneratePDFResults pdfGenerator = new Common.GeneratePDFResults();
             Document doc = pdfGenerator.GenerateResults(students);
 
@@ -223,5 +229,7 @@ namespace Business.Managers
             Database db = new Database("students2015", student);
 
         }
+
+        
     }
 }
